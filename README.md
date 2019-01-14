@@ -8,4 +8,4 @@ Use:
 
   1. Download and run RunBoxstarterInstall.bat (only works with IE)
   2. This will launch a download for an executable. 
-  2. Run the executable it will download, install, and configure all programs in chocolatey-recipe.txt
+  2. Run the executable it will download, install, and configure all programs in chocolatey-recipe.ps1
