@@ -42,7 +42,7 @@ Enable-WindowsOptionalFeature -FeatureName @(
 'NetFx3',
 'NetFx4Extended-ASPNET45',
 'TelnetClient'
-) -All
+) -All -Online
 
 Install-WindowsUpdate -getUpdatesFromMS -acceptEula -SuppressReboots
 Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives  -EnableShowFileExtensions # -EnableShowFullPathInTitleBar
@@ -61,7 +61,7 @@ choco install jre8
 # source control tools
 
 choco install winmerge # Same thing as BeyondCompare
-choco install git # -params '"/GitAndUnixToolsOnPath"'
+choco install git -params '"/GitAndUnixToolsOnPath"'
 #  cmder comes with git
 #choco install Cmder  
 # choco install hyper
