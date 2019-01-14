@@ -47,6 +47,9 @@ Enable-WindowsOptionalFeature -FeatureName @(
 Install-WindowsUpdate -getUpdatesFromMS -acceptEula -SuppressReboots
 Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives  -EnableShowFileExtensions # -EnableShowFullPathInTitleBar
 
+# Chocolatey
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
 # IIS
 
 choco install webdeploy
@@ -73,12 +76,18 @@ choco install tortoisehg
 
 # databases
 
-choco install sql-server-express -ia '/IACCEPTSQLSERVERLICENSETERMS /Q /ACTION=install /SQLUSERDBDIR=F:\Data\MSSQL\DEFAULT /SQLUSERDBLOGDIR=F:\Data\MSSQL\DEFAULT /SQLBACKUPDIR=F:\Data\MSSQL\DEFAULT\Backup' -o -y
+$dataDir="F:\Data\MSSQL\DEFAULT"
+$backupDir="$dataDir\Backup"
+md -Force $backupDir
+
+choco install sql-server-express -ia '/IACCEPTSQLSERVERLICENSETERMS /Q /ACTION=install /SQLUSERDBDIR=""$dataDir"" /SQLUSERDBLOGDIR=""$dataDir"" /SQLBACKUPDIR=""$backupDir""' -o -y
 choco install sql-server-management-studio
 
 # editors
 
-choco install visualstudio2017community
+choco install nodejs # Prerequisite
+
+choco install visualstudio2017community -ia '--add Microsoft.VisualStudio.Workload.CoreEditor --passive --locale en-US' -o -y
 choco install visualstudio2017-installer
 choco install visualstudio2017-remotetools # Remote debugging
 choco install visualstudio2017-powershelltools
@@ -128,7 +137,6 @@ choco install crystalreports-for-visualstudio --version 13.0.23.2819
 
 choco install fiddler4
 choco install filezilla
-choco install nodejs.install 
 choco install prefix # Free Profiler for ASP.NET
 
 # dev
