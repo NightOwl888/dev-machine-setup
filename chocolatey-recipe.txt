@@ -1,6 +1,7 @@
 # Windows setup
 
-Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+Install-PackageProvider Nuget –Force
+Update-Module -Name PowerShellGet
 Install-Module -Name AzureRM -AllowClobber -Force
 Install-Module -Name Az -AllowClobber -Force
 
