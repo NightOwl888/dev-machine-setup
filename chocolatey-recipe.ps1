@@ -1,6 +1,6 @@
 # Windows setup
 
-Install-PackageProvider Nuget –Force
+Install-PackageProvider Nuget -Force
 Update-Module -Name PowerShellGet
 Install-Module -Name AzureRM -AllowClobber -Force
 Install-Module -Name Az -AllowClobber -Force
@@ -62,7 +62,7 @@ choco install jre8
 # source control tools
 
 choco install winmerge # Same thing as BeyondCompare
-choco install git -params '"/GitAndUnixToolsOnPath"'
+choco install git # -params '"/GitAndUnixToolsOnPath"'
 #  cmder comes with git
 #choco install Cmder  
 # choco install hyper
