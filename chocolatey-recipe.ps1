@@ -1,113 +1,113 @@
-# Windows setup
+## Windows setup
 
-Install-PackageProvider Nuget -Force
-Install-Module -Name AzureRM -AllowClobber -Force
-Install-Module -Name Az -AllowClobber -Force
+#Install-PackageProvider Nuget -Force
+#Install-Module -Name AzureRM -AllowClobber -Force
+#Install-Module -Name Az -AllowClobber -Force
 
-Enable-WindowsOptionalFeature -FeatureName @(
-'Containers',
-'IIS-ApplicationDevelopment',
-'IIS-ASPNET',
-'IIS-ASPNET45',
-'IIS-ClientCertificateMappingAuthentication',
-'IIS-CommonHttpFeatures',
-'IIS-DefaultDocument',
-'IIS-DirectoryBrowsing',
-# 'IIS-FTPServer',
-# 'IIS-FTPSvc',
-'IIS-HealthAndDiagnostics',
-'IIS-HttpCompressionDynamic',
-'IIS-HttpCompressionStatic',
-'IIS-HttpErrors',
-'IIS-HttpLogging',
-'IIS-HttpRedirect',
-'IIS-HttpTracing',
-'IIS-IISCertificateMappingAuthentication',
-'IIS-IPSecurity',
-'IIS-ISAPIExtensions',
-'IIS-ISAPIFilter',
-'IIS-LoggingLibraries',
-'IIS-ManagementConsole',
-'IIS-NetFxExtensibility',
-'IIS-NetFxExtensibility45',
-'IIS-Performance',
-'IIS-RequestFiltering',
-'IIS-RequestMonitor',
-'IIS-Security',
-'IIS-StaticContent',
-'IIS-WebServer',
-'IIS-WebServerManagementTools',
-'IIS-WebServerRole',
-'IIS-WindowsAuthentication',
-'NetFx3',
-'NetFx4Extended-ASPNET45',
-'TelnetClient'
-) -All -Online
+#Enable-WindowsOptionalFeature -FeatureName @(
+#'Containers',
+#'IIS-ApplicationDevelopment',
+#'IIS-ASPNET',
+#'IIS-ASPNET45',
+#'IIS-ClientCertificateMappingAuthentication',
+#'IIS-CommonHttpFeatures',
+#'IIS-DefaultDocument',
+#'IIS-DirectoryBrowsing',
+## 'IIS-FTPServer',
+## 'IIS-FTPSvc',
+#'IIS-HealthAndDiagnostics',
+#'IIS-HttpCompressionDynamic',
+#'IIS-HttpCompressionStatic',
+#'IIS-HttpErrors',
+#'IIS-HttpLogging',
+#'IIS-HttpRedirect',
+#'IIS-HttpTracing',
+#'IIS-IISCertificateMappingAuthentication',
+#'IIS-IPSecurity',
+#'IIS-ISAPIExtensions',
+#'IIS-ISAPIFilter',
+#'IIS-LoggingLibraries',
+#'IIS-ManagementConsole',
+#'IIS-NetFxExtensibility',
+#'IIS-NetFxExtensibility45',
+#'IIS-Performance',
+#'IIS-RequestFiltering',
+#'IIS-RequestMonitor',
+#'IIS-Security',
+#'IIS-StaticContent',
+#'IIS-WebServer',
+#'IIS-WebServerManagementTools',
+#'IIS-WebServerRole',
+#'IIS-WindowsAuthentication',
+#'NetFx3',
+#'NetFx4Extended-ASPNET45',
+#'TelnetClient'
+#) -All -Online
 
-Install-WindowsUpdate -getUpdatesFromMS -acceptEula -SuppressReboots
-Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives  -EnableShowFileExtensions # -EnableShowFullPathInTitleBar
+#Install-WindowsUpdate -getUpdatesFromMS -acceptEula -SuppressReboots
+#Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives  -EnableShowFileExtensions # -EnableShowFullPathInTitleBar
 
-# Chocolatey
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+## Chocolatey
+#Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-# IIS
+## IIS
 
-choco install webdeploy
-choco install urlrewrite # If this fails, try https://www.microsoft.com/en-us/download/details.aspx?id=47337
+#choco install webdeploy
+#choco install urlrewrite # If this fails, try https://www.microsoft.com/en-us/download/details.aspx?id=47337
 
-# runtimes/sdks
+## runtimes/sdks
 
-choco install dotnetfx
-choco install dotnetcore-sdk
-choco install jdk8 
-choco install jre8
+#choco install dotnetfx
+#choco install dotnetcore-sdk
+#choco install jdk8 
+#choco install jre8
 
-# source control tools
+## source control tools
 
-choco install winmerge # Same thing as BeyondCompare
-choco install git -params '""/GitAndUnixToolsOnPath""'
-#  cmder comes with git
-#choco install Cmder  
-# choco install hyper
-choco install sourcetree
-choco install tortoisesvn 
-choco install tortoisegit 
-choco install tortoisehg
+#choco install winmerge # Same thing as BeyondCompare
+#choco install git -params '""/GitAndUnixToolsOnPath""'
+##  cmder comes with git
+##choco install Cmder  
+## choco install hyper
+#choco install sourcetree
+#choco install tortoisesvn 
+#choco install tortoisegit 
+#choco install tortoisehg
 
-# databases
+## databases
 
-$dataDir="F:\Data\MSSQL\DEFAULT"
-$backupDir="$dataDir\Backup"
-md -Force $backupDir
+#$dataDir="F:\Data\MSSQL\DEFAULT"
+#$backupDir="$dataDir\Backup"
+#md -Force $backupDir
 
-choco install sql-server-express -ia '/IACCEPTSQLSERVERLICENSETERMS /Q /ACTION=install /SQLUSERDBDIR=""$dataDir"" /SQLUSERDBLOGDIR=""$dataDir"" /SQLBACKUPDIR=""$backupDir""' -o -y
-choco install sql-server-management-studio
+#choco install sql-server-express -ia '/IACCEPTSQLSERVERLICENSETERMS /Q /ACTION=install /SQLUSERDBDIR=""$dataDir"" /SQLUSERDBLOGDIR=""$dataDir"" /SQLBACKUPDIR=""$backupDir""' -o -y
+#choco install sql-server-management-studio
 
-# editors
+## editors
 
-choco install nodejs # Prerequisite
+#choco install nodejs # Prerequisite
 
-choco install visualstudio2017community -ia '--add Microsoft.VisualStudio.Workload.CoreEditor --passive --locale en-US' -o -y
-choco install visualstudio2017-installer
-choco install visualstudio2017-remotetools # Remote debugging
-choco install visualstudio2017-powershelltools
-choco install visualstudio2017-performancetools # Profiling tools
-choco install visualstudio2017buildtools # MSBuild development without visual studio
-choco install visualstudio2017-workload-azure
-choco install visualstudio2017-workload-azurebuildtools
-choco install visualstudio2017-workload-node 
-choco install visualstudio2017-workload-data
-choco install visualstudio2017-workload-databuildtools
-choco install visualstudio2017-workload-netweb 
-choco install visualstudio2017-workload-manageddesktop
-choco install visualstudio2017-workload-manageddesktopbuildtools
-choco install visualstudio2017-workload-netcoretools
-choco install visualstudio2017-workload-webbuildtools # Web MSBuild development without visual studio
-choco install visualstudio2017-workload-netcrossplat # Mobile development (Xamarin)
-choco install visualstudio2017-workload-xamarinbuildtools 
-choco install visualstudio2017-workload-visualstudioextension # VS Extension development
-choco install visualstudio2017-workload-visualstudioextensionbuildtools
-choco install visualstudio2017-workload-managedgame # Unity development
+#choco install visualstudio2017community -ia '--add Microsoft.VisualStudio.Workload.CoreEditor --passive --locale en-US' -o -y
+#choco install visualstudio2017-installer
+#choco install visualstudio2017-remotetools # Remote debugging
+#choco install visualstudio2017-powershelltools
+#choco install visualstudio2017-performancetools # Profiling tools
+#choco install visualstudio2017buildtools # MSBuild development without visual studio
+#choco install visualstudio2017-workload-azure
+#choco install visualstudio2017-workload-azurebuildtools
+#choco install visualstudio2017-workload-node 
+#choco install visualstudio2017-workload-data
+#choco install visualstudio2017-workload-databuildtools
+#choco install visualstudio2017-workload-netweb 
+#choco install visualstudio2017-workload-manageddesktop
+#choco install visualstudio2017-workload-manageddesktopbuildtools
+#choco install visualstudio2017-workload-netcoretools
+#choco install visualstudio2017-workload-webbuildtools # Web MSBuild development without visual studio
+#choco install visualstudio2017-workload-netcrossplat # Mobile development (Xamarin)
+#choco install visualstudio2017-workload-xamarinbuildtools 
+#choco install visualstudio2017-workload-visualstudioextension # VS Extension development
+#choco install visualstudio2017-workload-visualstudioextensionbuildtools
+#choco install visualstudio2017-workload-managedgame # Unity development
 
 #choco install resharper
 #choco install WebStorm
